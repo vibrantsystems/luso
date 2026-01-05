@@ -11,14 +11,19 @@ export default function ComingSoon() {
         <div className="max-w-2xl text-center space-y-8">
           {/* Logo */}
           <div className="flex justify-center">
-            <Image
-              src="/logo.png"
-              alt="Luso platform logo"
-              width={140}
-              height={140}
-              priority
-              className="drop-shadow-xl"
-            />
+            <div className="relative rounded-3xl bg-white/5 p-6 backdrop-blur-sm">
+              <Image
+                src="/logo.png"
+                alt="Luso platform logo"
+                width={140}
+                height={140}
+                priority
+                className="opacity-90"
+              />
+
+              {/* Soft glow */}
+              <div className="absolute inset-0 -z-10 rounded-3xl bg-gradient-to-r from-indigo-500/20 via-cyan-400/20 to-emerald-400/20 blur-2xl" />
+            </div>
           </div>
 
           {/* Brand name */}
