@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/ui/header";
 import Footer from "@/components/ui/footer";
+import { FaSearch, FaComments, FaHandshake, FaBullhorn } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -37,14 +39,14 @@ export default function Home() {
                 size="lg"
                 className="rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-500 text-white cursor-pointer"
               >
-                Find Equipment
+                Find Equipment/Skill
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="rounded-xl border-indigo-400 text-indigo-600 hover:bg-indigo-50 cursor-pointer"
               >
-                Find Skills
+                Advertise Equipment/Skill
               </Button>
             </div>
           </motion.div>
@@ -70,7 +72,6 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-
       {/* Categories */}
       <section className="max-w-7xl mx-auto px-6 py-20">
         <h2 className="text-3xl font-bold mb-10">Popular Categories</h2>
@@ -93,41 +94,145 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      {/* How it works */}
       <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-10">How Luso Works</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Post or Search",
-                desc: "List your equipment or skills, or search what you need.",
-              },
-              {
-                title: "Connect",
-                desc: "Send enquiries and agree on short or long-term deals.",
-              },
-              {
-                title: "Hire & Deliver",
-                desc: "Complete the deal and grow your business.",
-              },
-            ].map((step, i) => (
-              <div
-                key={i}
-                className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm"
-              >
-                <div className="text-4xl font-bold text-cyan-500 mb-2">
-                  {i + 1}
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                <p className="text-slate-600">{step.desc}</p>
+          <h2 className="text-3xl font-bold mb-4 text-slate-900">
+            How Luso Works
+          </h2>
+          <p className="text-slate-600 mb-10 max-w-2xl">
+            Whether you’re hiring or offering services and equipment, Luso makes
+            it simple.
+          </p>
+
+          {/* Two main paths */}
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            {/* Hire / Advertise */}
+            <Link
+              href="/how-it-works/hire"
+              className="group bg-slate-50 border border-slate-200 rounded-2xl p-8 flex gap-6 items-start hover:shadow-lg transition cursor-pointer"
+            >
+              <div className="p-4 bg-indigo-100 rounded-xl text-indigo-600">
+                <FaBullhorn size={28} />
               </div>
-            ))}
+              <div>
+                <h3 className="text-xl font-semibold text-slate-900 group-hover:text-indigo-600 transition">
+                  I want to hire or advertise
+                </h3>
+                <p className="text-slate-600 mt-2">
+                  Post a job or list your equipment, receive enquiries, agree on
+                  terms, and get work done.
+                </p>
+              </div>
+            </Link>
+
+            {/* Find Skills / Equipment */}
+            <Link
+              href="/how-it-works/find"
+              className="group bg-slate-50 border border-slate-200 rounded-2xl p-8 flex gap-6 items-start hover:shadow-lg transition cursor-pointer"
+            >
+              <div className="p-4 bg-cyan-100 rounded-xl text-cyan-600">
+                <FaSearch size={28} />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-slate-900 group-hover:text-cyan-600 transition">
+                  I’m looking for skills or equipment
+                </h3>
+                <p className="text-slate-600 mt-2">
+                  Search what you need, contact providers, agree on price and
+                  timeline, and get started.
+                </p>
+              </div>
+            </Link>
+          </div>
+
+          {/* Simple 3-step overview */}
+          <div className="relative max-w-6xl mx-auto mt-16">
+            <div className="grid md:grid-cols-3 gap-10 items-center relative z-10">
+              {/* Step 1 */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="bg-gradient-to-br from-indigo-50 to-cyan-50 border border-indigo-200 rounded-2xl p-8 text-center shadow-lg"
+              >
+                <div className="mx-auto w-14 h-14 flex items-center justify-center rounded-full bg-indigo-600 text-white mb-4">
+                  <FaSearch size={22} />
+                </div>
+                <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                  Post or Search
+                </h3>
+                <p className="text-slate-600">
+                  List your service or equipment, or search what you need.
+                </p>
+              </motion.div>
+
+              {/* Step 2 */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-200 rounded-2xl p-8 text-center shadow-lg"
+              >
+                <motion.div
+                  animate={{ y: [0, -4, 0] }}
+                  transition={{ repeat: Infinity, duration: 2 }}
+                  className="mx-auto w-14 h-14 flex items-center justify-center rounded-full bg-purple-600 text-white mb-4"
+                >
+                  <FaComments size={22} />
+                </motion.div>
+                <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                  Connect
+                </h3>
+                <p className="text-slate-600">
+                  Chat, agree on price, duration, and terms.
+                </p>
+              </motion.div>
+
+              {/* Step 3 */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="bg-gradient-to-br from-cyan-50 to-green-50 border border-cyan-200 rounded-2xl p-8 text-center shadow-lg"
+              >
+                <motion.div
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ repeat: Infinity, duration: 3 }}
+                  className="mx-auto w-14 h-14 flex items-center justify-center rounded-full bg-cyan-600 text-white mb-4"
+                >
+                  <FaHandshake size={22} />
+                </motion.div>
+                <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                  Work & Deliver
+                </h3>
+                <p className="text-slate-600">
+                  Complete the job and grow your business.
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Futuristic arrows */}
+            <div className="hidden md:block absolute inset-0 z-0">
+              {/* Arrow 1 */}
+              <motion.div
+                animate={{ opacity: [0.4, 1, 0.4] }}
+                transition={{ repeat: Infinity, duration: 2 }}
+                className="absolute left-1/3 top-1/2 w-32 h-[2px] bg-gradient-to-r from-indigo-400 to-purple-400"
+              />
+              {/* Arrow head */}
+              <div className="absolute left-[calc(33%+7.5rem)] top-[calc(50%-4px)] border-t-4 border-b-4 border-l-8 border-transparent border-l-purple-400" />
+
+              {/* Arrow 2 */}
+              <motion.div
+                animate={{ opacity: [0.4, 1, 0.4] }}
+                transition={{ repeat: Infinity, duration: 2, delay: 1 }}
+                className="absolute left-2/3 top-1/2 w-32 h-[2px] bg-gradient-to-r from-purple-400 to-cyan-400"
+              />
+              <div className="absolute left-[calc(66%+7.5rem)] top-[calc(50%-4px)] border-t-4 border-b-4 border-l-8 border-transparent border-l-cyan-400" />
+            </div>
           </div>
         </div>
       </section>
-
       {/* CTA */}
       <section className="max-w-7xl mx-auto px-6 py-24 text-center">
         <h2 className="text-4xl font-extrabold mb-6">Ready to get started?</h2>
@@ -141,7 +246,6 @@ export default function Home() {
           Create an Account
         </Button>
       </section>
-
       <Footer />
     </main>
   );
